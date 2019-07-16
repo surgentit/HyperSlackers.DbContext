@@ -47,8 +47,8 @@ namespace HyperSlackers.DbContext.Demo
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            Helpers.ThrowIfNull(options != null, "options");
-            Helpers.ThrowIfNull(context != null, "context");
+            if (options == null) throw new ArgumentNullException("options");
+            if (context == null) throw new ArgumentNullException("context");
 
             // DRM Changed
             //x var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
@@ -125,7 +125,7 @@ namespace HyperSlackers.DbContext.Demo
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
-            Helpers.ThrowIfNull(context != null, "context");
+            if (context == null) throw new ArgumentNullException("context");
 
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
