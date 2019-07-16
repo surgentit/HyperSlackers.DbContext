@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using HyperSlackers.AspNet.Identity.EntityFramework.ExtensionMethods;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
+using System.Data.Entity;
 
 namespace HyperSlackers.AspNet.Identity.EntityFramework
 {
@@ -212,7 +213,7 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 // global user cannot exist in any hosts
                 var userId = user.Id;
                 var userName = user.UserName;
-                List<TUser> existingUsers = Manager.AllUsers.Where(u => u.UserName == userName).ToList();
+                List<TUser> existingUsers = await Manager.AllUsers.Where(u => u.UserName == userName).ToListAsync();
 
                 if (existingUsers.Any(u => !u.Id.Equals(userId)))
                 {
@@ -226,7 +227,7 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 var userId = user.Id;
                 var userName = user.UserName;
                 var hostId = user.HostId;
-                List<TUser> existingHostUsers = Manager.AllUsers.Where(u => u.UserName == userName && u.HostId.Equals(hostId)).ToList();
+                List<TUser> existingHostUsers = await Manager.AllUsers.Where(u => u.UserName == userName && u.HostId.Equals(hostId)).ToListAsync();
 
                 if (existingHostUsers.Any(u => !u.Id.Equals(userId)))
                 {
@@ -235,7 +236,7 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 }
 
                 // user cannot exist as global
-                List<TUser> existingGlobalUsers = Manager.AllUsers.Where(u => u.UserName == userName && u.IsGlobal == true).ToList();
+                List<TUser> existingGlobalUsers = await Manager.AllUsers.Where(u => u.UserName == userName && u.IsGlobal == true).ToListAsync();
 
                 if (existingGlobalUsers.Any(u => !u.Id.Equals(userId)))
                 {

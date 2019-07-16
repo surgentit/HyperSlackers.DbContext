@@ -1,0 +1,1 @@
+﻿Placeholder file in App_Data folder to make sure the folder gets created

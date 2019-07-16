@@ -265,8 +265,7 @@ namespace HyperSlackers.DbContext.Demo.Migrations
                 "dbo.AspNetUserClaims",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        ClusteredKey = c.Long(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         HostId = c.Guid(nullable: false),
                         IsGlobal = c.Boolean(nullable: false),
                         UserId = c.Guid(nullable: false),
@@ -275,7 +274,6 @@ namespace HyperSlackers.DbContext.Demo.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .Index(t => t.ClusteredKey, clustered: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -315,7 +313,6 @@ namespace HyperSlackers.DbContext.Demo.Migrations
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", "IX_Provider_Key_Host_Global");
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUserClaims", new[] { "ClusteredKey" });
             DropIndex("dbo.AspNetUsers", "IX_Global_Name");
             DropIndex("dbo.AspNetUsers", "IX_Email_Host_Global");
             DropIndex("dbo.AspNetUsers", "IX_Name_Host_Global");

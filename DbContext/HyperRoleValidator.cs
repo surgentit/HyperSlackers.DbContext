@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,7 +128,7 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 // either as a system role or on any host
                 var roleId = role.Id;
                 var roleName = role.Name;
-                List<TRole> existingRoles = Manager.Roles.Where(r => r.Name == roleName).ToList();
+                List<TRole> existingRoles = await Manager.Roles.Where(r => r.Name == roleName).ToListAsync();
 
                 if (existingRoles.Any(r => !r.Id.Equals(roleId)))
                 {
@@ -141,7 +141,7 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 var roleId = role.Id;
                 var roleName = role.Name;
                 var hostId = role.HostId;
-                List<TRole> existingHostRoles = Manager.Roles.Where(r => r.Name == roleName && r.HostId.Equals(hostId)).ToList();
+                List<TRole> existingHostRoles = await Manager.Roles.Where(r => r.Name == roleName && r.HostId.Equals(hostId)).ToListAsync();
 
                 if (existingHostRoles.Any(r => !r.Id.Equals(roleId)))
                 {
@@ -149,7 +149,7 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 }
 
                 // role cannot exist as global
-                List<TRole> existingGlobalRoles = Manager.Roles.Where(r => r.Name == roleName && r.IsGlobal == true).ToList();
+                List<TRole> existingGlobalRoles = await Manager.Roles.Where(r => r.Name == roleName && r.IsGlobal == true).ToListAsync();
 
                 if (existingGlobalRoles.Any(r => !r.Id.Equals(roleId)))
                 {

@@ -32,7 +32,7 @@ namespace HyperSlackers.DbContext.Demo
 
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
-            if (User.Identity.IsAuthenticated)
+            if (User?.Identity?.IsAuthenticated ?? false)
             {
                 //here we can subscribe user to a role via Roles.AddUserToRole()
             }
