@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>dmayhak</authors>
+    <owners>dmayhak</owners>
+    <projectUrl>http://www.surgent.com</projectUrl>
+    <iconUrl>https://cdn.surgent.com/wp-content/uploads/2017/08/favicon2.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Hyperslackers DbContext for client support</description>
+    <releaseNotes>Production version</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Hyperslackers DbContext EntityFramework EF</tags>
+  </metadata>
+</package>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbContext.Demo", "DbContext.Demo\DbContext.Demo.csproj", "{AD47CB36-065A-41FF-9217-F5A5DA6E51FB}"
 EndProject
@@ -9,7 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbContext", "DbContext\DbCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE7C7CE9-DAD2-45B7-8C70-8BEE87B81B14}"
 	ProjectSection(SolutionItems) = preProject
-		LICENSE = LICENSE
 		Notes.txt = Notes.txt
 		README.md = README.md
 	EndProjectSection
@@ -36,5 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {730157CE-54EB-4CD1-9E2E-540E4281A80D}
 	EndGlobalSection
 EndGlobal

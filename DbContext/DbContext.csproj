@@ -250,6 +250,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DbContext.nuspec">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework">
@@ -290,30 +296,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo Post-build for $(ProjectName)
-
-echo Copying $(TargetFileName) to ThirdParty folder
-xcopy "$(TargetPath)" "C:\Dev\ThirdParty\HyperSlackers\$(ProjectName)\$(TargetFrameworkVersion)\$(ConfigurationName)\" /Y
-if errorlevel 1 goto BuildEventFailed
-
-if $(ConfigurationName) == Release (
-rem echo Generating documentation
-rem cd $(ProjectDir)Doxygen
-rem doxygen  $(TargetName).doxygen
-rem cd $(TargetDir)Docs\latex
-rem make doc
-rem copy /Y refman.pdf ..\$(TargetName).pdf
-)
-
-rem All tasks completed
-echo Post-build for $(ProjectName) completed successfully
-exit 0
-
-:BuildEventFailed
-echo Post-build for $(ProjectName) failed!
-exit 1
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
