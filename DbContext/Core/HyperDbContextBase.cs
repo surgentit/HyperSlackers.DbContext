@@ -94,11 +94,9 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 {
                     try
                     {
-                        System.Web.HttpContext context = System.Web.HttpContext.Current;
-                        if (context != null)
+                        var hostName = System.Web.HttpContext.Current?.Request?.Url?.Host;
+                        if (hostName != null)
                         {
-                            // web application
-                            var hostName = context.Request.Url.Host;
                             currentHost = this.Set<THostDomain>().SingleOrDefault(d => d.DomainName.ToUpper() == hostName.ToUpper()).Host;
                         }
                     }
@@ -106,8 +104,6 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                     {
                         //TODO: hopefully we only hit this when creating the migration and db does not exist
                         System.Diagnostics.Debug.WriteLine("CurrentHost.Get Failed: " + ex.Message);
-
-
                     }
                 }
 
@@ -147,18 +143,11 @@ namespace HyperSlackers.AspNet.Identity.EntityFramework
                 {
                     try
                     {
-                        System.Web.HttpContext context = System.Web.HttpContext.Current;
-                        if (context != null)
+                        var userId = System.Web.HttpContext.Current?.User?.Identity?.GetUserId();
+                        if(userId != null)
                         {
-                            var contextUser = context.User;
-                            if (contextUser != null)
-                            {
-                                var userId = contextUser.Identity.GetUserId();
-                                TKey id = (TKey)TypeDescriptor.GetConverter(typeof(TKey)).ConvertFromInvariantString(userId);
-
-                                //currentUser = this.Set<TUser>().SingleOrDefault(u => u.Id.ToString().ToUpper() == userId.ToUpper());
-                                currentUser = this.Set<TUser>().SingleOrDefault(u => u.Id.Equals(id));
-                            }
+                            TKey id = (TKey)TypeDescriptor.GetConverter(typeof(TKey)).ConvertFromInvariantString(userId);
+                            currentUser = this.Set<TUser>().SingleOrDefault(u => u.Id.Equals(id));
                         }
                     }
                     catch (Exception ex)
